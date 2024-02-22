@@ -36,14 +36,13 @@ const QuizQuestions = ({ quizId }) => {
   };
 
   const handleSubmit = () => {
-    // Check if questions array is empty or undefined
     if (!questions || questions.length === 0) {
       console.error("No questions available.");
       return;
     }
 
     const responses = Object.values(selectedAnswer).map((answer, index) => ({
-      id: questions[index].id,
+      id: questions[index]?.id,
       response: answer,
     }));
 
@@ -52,6 +51,9 @@ const QuizQuestions = ({ quizId }) => {
     calculateResponse(quizId, responses)
       .then((result) => {
         setQuizResult(result);
+        setSelectedAnswer({});
+        document.getElementById(`question-${questions[0].id}`).target.value =
+          "";
       })
       .catch((err) => {
         console.error("Error calculating quiz result:", err);
