@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import "./quiz.css";
 import { createQuiz } from "../service/QuizService";
 import { useState } from "react";
 
@@ -64,7 +65,7 @@ const Quiz = ({ questions }) => {
   };
 
   return (
-    <Box>
+    <Box className="">
       <Typography
         variant="h4"
         className="text-center text-amber-700"
@@ -73,10 +74,10 @@ const Quiz = ({ questions }) => {
         Create Quiz
       </Typography>
       <FormControl
-        className="w-[500px] h-[500px]"
+        className="w-[500px] h-[500px]  sm:w-[400px] sm:h-[300px]"
+        id="formBox"
         sx={{
           marginTop: "20px",
-          marginX: "30%",
         }}
       >
         <InputLabel id="demo-simple-select-label">Category</InputLabel>

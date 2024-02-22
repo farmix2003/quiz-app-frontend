@@ -1,0 +1,40 @@
+@media screen and (min-width: 360px) {
+  #formBox {
+    margin-left: 0px;
+  }
+}
+@media screen and (min-width: 412px) {
+  #formBox {
+    margin: 1rem;
+  }
+}
+@media screen and (min-width: 490px) {
+  #formBox {
+    margin-left: 4%;
+  }
+}
+@media screen and (min-width: 700px) {
+  #formBox {
+    margin-left: 17%;
+  }
+}
+@media screen and (min-width: 820px) {
+  #formBox {
+    margin-left: 19%;
+  }
+}
+@media screen and (min-width: 910px) {
+  #formBox {
+    margin-left: 23%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #formBox {
+    margin-left: 25%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #formBox {
+    margin-left: 32%;
+  }
+}

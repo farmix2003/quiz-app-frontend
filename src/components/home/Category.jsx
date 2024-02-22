@@ -37,7 +37,11 @@ const Category = () => {
 
   return (
     <Container>
-      <Typography variant="h3" sx={{ margin: "1.2rem 35%" }}>
+      <Typography
+        variant="h3"
+        sx={{ marginTop: "1.2rem" }}
+        className="text-center"
+      >
         Categories
       </Typography>
       <Typography variant="h5">All categories</Typography>
