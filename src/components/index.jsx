@@ -5,3 +5,4 @@ export { default as AddQuestion } from "./add-question/AddQuestion";
 export { default as Quiz } from "./quiz-module/Quiz";
 export { default as TryQuiz } from "./quiz-module/TryQuiz";
 export { default as QuizQuestions } from "./quiz-module/QuizQuestions";
+export { default as QuizResult } from "./quiz-module/QuizResult";

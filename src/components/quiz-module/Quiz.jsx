@@ -19,7 +19,6 @@ const categories = [
   "Java",
   "Python",
   "JavaScript",
-  "C++",
   "Golang",
   "C#",
   "Ruby",

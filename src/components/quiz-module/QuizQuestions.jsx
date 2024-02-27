@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import { calculateResponse, getQuizQuestion } from "../service/QuizService";
 import {
   Box,
   Button,
@@ -13,54 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 
-const QuizQuestions = ({ quizId }) => {
-  const [questions, setQuestions] = useState([]);
-  const [selectedAnswer, setSelectedAnswer] = useState({});
-  const [quizResult, setQuizResult] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    getQuizQuestion(quizId)
-      .then((questions) => {
-        setQuestions(questions);
-        setError(null);
-      })
-      .catch((error) => {
-        console.error("Error fetching quiz questions:", error);
-        setError("Error fetching quiz questions. Please try again later.");
-      });
-  }, [quizId]);
-
-  const handleInputChange = (questionId, answer) => {
-    setSelectedAnswer({ ...selectedAnswer, [questionId]: answer });
-  };
-
-  const handleSubmit = () => {
-    if (!questions || questions.length === 0) {
-      console.error("No questions available.");
-      return;
-    }
-
-    const responses = Object.values(selectedAnswer).map((answer, index) => ({
-      id: questions[index]?.id,
-      response: answer,
-    }));
-
-    console.log(responses);
-
-    calculateResponse(quizId, responses)
-      .then((result) => {
-        setQuizResult(result);
-        setSelectedAnswer({});
-        document.getElementById(`question-${questions[0].id}`).target.value =
-          "";
-      })
-      .catch((err) => {
-        console.error("Error calculating quiz result:", err);
-        setError("Error calculating quiz result. Please try again later.");
-      });
-  };
-
+const QuizQuestions = ({
+  quizQuestions,
+  error,
+  handleInputChange,
+  handleSubmit,
+}) => {
   return (
     <FormControl component="fieldset">
       {error ? (
@@ -68,7 +24,7 @@ const QuizQuestions = ({ quizId }) => {
           {error}
         </Typography>
       ) : (
-        questions.map((question) => (
+        quizQuestions.map((question) => (
           <div key={question.id}>
             <FormLabel component="legend" sx={{ marginTop: "10px" }}>
               {question.question_title}
@@ -104,22 +60,21 @@ const QuizQuestions = ({ quizId }) => {
         ))
       )}
       <Box>
-        {questions.length > 0 && (
+        {quizQuestions.length > 0 && (
           <Button
             type="submit"
             variant="contained"
-            sx={{ textAlign: "center", marginBottom: "3rem" }}
+            sx={{
+              textAlign: "center",
+              marginBottom: "2rem",
+              marginTop: "1rem",
+            }}
             onClick={handleSubmit}
           >
             Submit
           </Button>
         )}
       </Box>
-      {quizResult !== null && (
-        <Typography variant="body1">
-          Quiz Result: {quizResult} out of {questions.length}
-        </Typography>
-      )}
     </FormControl>
   );
 };

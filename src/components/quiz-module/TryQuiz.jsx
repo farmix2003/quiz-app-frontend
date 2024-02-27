@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../service/QuizService";
 import {
@@ -14,9 +15,19 @@ import {
 } from "@mui/material";
 import { QuizQuestions } from "..";
 
-const TryQuiz = () => {
+const TryQuiz = ({
+  error,
+  setError,
+  quizId,
+  setQuizId,
+  selectedAnswer,
+  setSelectedAnswer,
+  handleInputChange,
+  handleSubmit,
+  quizQuestions,
+}) => {
   const [quizzes, setQuizzes] = useState([]);
-  const [quizId, setQuizId] = useState(0);
+
   useEffect(() => {
     getAllQuizzes().then((data) => {
       setQuizzes(data);
@@ -65,8 +76,17 @@ const TryQuiz = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <QuizQuestions quizId={quizId} />
+
+        <QuizQuestions
+          quizId={quizId}
+          error={error}
+          setError={setError}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+          selectedAnswer={selectedAnswer}
+          setSelectedAnswer={setSelectedAnswer}
+          quizQuestions={quizQuestions}
+        />
       </Box>
     </Box>
   );
